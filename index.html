@@ -15,41 +15,55 @@
     <div class="row d-inline-flex justify-content-center">
         <div class="card mt-3 ml-3 d-flex" id="card1" style="width: 18rem;" onclick="turn(1)">
             <img class="card-img" alt="Card image" src="/images/hydra.jpg">
-            <img class="card-img" alt="Card image" src="/images/hydra.jpg" style="display: none;">
+            <img class="card-img" alt="Card image" src="/images/shield.jpg" name="boop" style="display: none;">
         </div>
         <div class="card mt-3 ml-3 d-flex" id="card2" style="width: 18rem;" onclick="turn(2)">
             <img class="card-img" alt="Card image" src="/images/hydra.jpg">
+            <img class="card-img" alt="Card image" src="/images/shield.jpg" name="boop" style="display: none;">
         </div>
         <div class="card mt-3 ml-3 d-flex" id="card3" style="width: 18rem;" onclick="turn(3)">
             <img class="card-img" alt="Card image" src="/images/hydra.jpg">
+            <img class="card-img" alt="Card image" src="/images/shield.jpg" style="display: none;">
         </div>
     </div>
     <br>
     <div class="row d-inline-flex justify-content-center">
         <div class="card mt-3 ml-3 d-flex" id="card4" style="width: 18rem;" onclick="turn(4)">
             <img class="card-img" alt="Card image" src="/images/hydra.jpg">
+            <img class="card-img" alt="Card image" src="/images/shield.jpg" style="display: none;">
         </div>
         <div class="card mt-3 ml-3 d-flex" id="card5" style="width: 18rem;" onclick="turn(5)">
             <img class="card-img" alt="Card image" src="/images/hydra.jpg">
+            <img class="card-img" alt="Card image" src="/images/shield.jpg" style="display: none;">
         </div>
         <div class="card mt-3 ml-3 d-flex" id="card6" style="width: 18rem;" onclick="turn(6)">
             <img class="card-img" alt="Card image" src="/images/hydra.jpg">
+            <img class="card-img" alt="Card image" src="/images/shield.jpg" style="display: none;">
         </div>
     </div>
 
 </body>
 
 <script>
+    var counter = 0;
+
     function turn(x) {
-        console.log("yay");
         var card = document.getElementById("card" + x);
         var imgs = card.getElementsByTagName('img');
-        console.log(card);
-        console.log(imgs);
 
-
-
+        if (counter < 2) {
+            imgs[0].style.display = "none";
+            imgs[1].style.display = "block";
+            counter++;
+            imgs[1].classList.add('turned');
+            turnedcards = document.getElementsByClassName('turned');
+            if (turnedcards[0].src == turnedcards[1].src) {
+                turnedcards[0].style.display = "none";
+                turnedcards[1].style.display = "none";
+                counter = 0;
+            }
+        }
     }
 </script>
 
-</html>
+</html
