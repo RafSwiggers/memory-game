@@ -50,21 +50,21 @@
     var counter = 0;
 
     function turn(x) {
-        var card = document.getElementById(" card " + x);
+        var card = document.getElementById("card" + x);
         var imgs = card.getElementsByTagName('img');
         pagecards = document.getElementsByClassName('card');
         currentcard = pagecards[x - 1];
         if (counter < 2) {
-            imgs[0].style.display = "none ";
-            imgs[1].style.display = "block ";
+            imgs[0].style.display = "none";
+            imgs[1].style.display = "block";
             counter++;
             imgs[1].classList.add('turned');
             turnedcards = document.getElementsByClassName('turned');
             var firstcard = turnedcards[0];
             var secondcard = turnedcards[1];
             if (turnedcards[0].src == turnedcards[1].src) {
-                firstcard.style.display = "none ";
-                secondcard.style.display = "none ";
+                firstcard.style.display = "none";
+                secondcard.style.display = "none";
                 counter = 0;
             } else {
 
