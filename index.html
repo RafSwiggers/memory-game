@@ -59,7 +59,7 @@
             imgs[1].style.display = "block";
             counter++;
             imgs[1].classList.add('turned');
-            turnedcards = document.getElementsByClassName('turned');
+            var turnedcards = document.getElementsByClassName('turned');
             if (turnedcards[0].src == turnedcards[1].src) {
                 function slowturncard() {
                     setTimeOut(cardsgone, 2000);
