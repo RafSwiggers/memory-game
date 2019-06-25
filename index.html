@@ -61,7 +61,9 @@
             imgs[1].classList.add('turned');
             var turnedcards = document.getElementsByClassName('turned');
             if (turnedcards[0].src == turnedcards[1].src) {
-                setTimeOut(cardsgone, 2000);
+                slowturncard() {
+                    setTimeOut(cardsgone, 2000);
+                }
             } else {
 
             }
