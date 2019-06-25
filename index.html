@@ -62,6 +62,7 @@
             var turnedcards = document.getElementsByClassName('turned');
             if (turnedcards[0].src == turnedcards[1].src) {
                 function slowturncard() {
+                    console.log("work 2")
                     setTimeOut(cardsgone, 2000);
                 }
             } else {
@@ -71,6 +72,7 @@
     }
 
     function cardsgone() {
+        console.log("stuff")
         turnedcards2 = document.getElementsByClassName('turned');
         var firstcard = turnedcards2[0];
         var secondcard = turnedcards2[1];
