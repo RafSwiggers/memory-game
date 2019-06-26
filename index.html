@@ -5,85 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styling/css.css">
-
     <title>Memory Game</title>
+    <link rel="stylesheet" href="memory-game/styling/css.css">
 </head>
 
 <body>
-    <div class="row d-inline-flex justify-content-center">
-        <div class="card mt-3 ml-3 d-flex" id="card1" style="width: 18rem;" onclick="turn(1)">
-            <img class="card-img" alt="Card image" src="/images/avengers.png">
-            <img class="card-img" alt="Card image" src="/images/shield.jpg" name="boop" style="display: none;">
-        </div>
-        <div class="card mt-3 ml-3 d-flex" id="card2" style="width: 18rem;" onclick="turn(2)">
-            <img class="card-img" alt="Card image" src="/images/avengers.png">
-            <img class="card-img" alt="Card image" src="/images/reactor.jpg" name="boop" style="display: none;">
-        </div>
-        <div class="card mt-3 ml-3 d-flex" id="card3" style="width: 18rem;" onclick="turn(3)">
-            <img class="card-img" alt="Card image" src="/images/avengers.png">
-            <img class="card-img" alt="Card image" src="/images/hammer.jpg" style="display: none;">
-        </div>
-    </div>
-    <br>
-    <div class="row d-inline-flex justify-content-center">
-        <div class="card mt-3 ml-3 d-flex" id="card4" style="width: 18rem;" onclick="turn(4)">
-            <img class="card-img" alt="Card image" src="/images/avengers.png">
-            <img class="card-img" alt="Card image" src="/images/hammer.jpg" style="display: none;">
-        </div>
-        <div class="card mt-3 ml-3 d-flex" id="card5" style="width: 18rem;" onclick="turn(5)">
-            <img class="card-img" alt="Card image" src="/images/avengers.png">
-            <img class="card-img" alt="Card image" src="/images/reactor.jpg" style="display: none;">
-        </div>
-        <div class="card mt-3 ml-3 d-flex" id="card6" style="width: 18rem;" onclick="turn(6)">
-            <img class="card-img" alt="Card image" src="/images/avengers.png">
-            <img class="card-img" alt="Card image" src="/images/shield.jpg" style="display: none;">
-        </div>
-    </div>
-    <br>
-    <button class="btn btn-primary" onClick="window.location.reload()"> Click here to reset</button>
+    <div id="game"></div>
+</body>
+
+</html>
+
+<script src="/memory-game/script/javascript.js"></script>
 
 </body>
 
-<script>
-    var counter = 0;
-    indexcounter = 0;
-
-    function turn(x) {
-        var card = document.getElementById("card" + x);
-        var imgs = card.getElementsByTagName('img');
-        pagecards = document.getElementsByClassName('card');
-        currentcard = pagecards[x - 1];
-        if (counter < 2) {
-            imgs[0].style.display = "none";
-            imgs[1].style.display = "block";
-            counter++;
-            indexcounter++;
-            imgs[1].classList.add('turned');
-            turnedcards = document.getElementsByClassName('turned');
-            console.log(turnedcards.length)
-            if (turnedcards[indexcounter - 1].src == turnedcards[indexcounter - 1].src) {
-                slowturncard();
-                counter = 0;
-            }
-        }
-    }
-
-    function slowturncard() {
-        console.log("work 2")
-        setTimeout(cardsgone, 1000);
-    }
-
-
-    function cardsgone() {
-        console.log("stuff")
-        turnedcards2 = document.getElementsByClassName('turned');
-        var firstcard = turnedcards2[indexcounter - 2];
-        var secondcard = turnedcards2[indexcounter - 1];
-        firstcard.style.display = "none";
-        secondcard.style.display = "none";
-    }
-</script>
-
-</html
+</html>
