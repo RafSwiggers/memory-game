@@ -1,100 +1,114 @@
 const cardsArray = [{
-        name: 'cap',
-        img: './images/shield.jpg',
+        'name': 'shell',
+        'img': '/images/avengers.png',
     },
     {
-        name: "thor",
-        img: "./images/hammer.jpg",
+        'name': 'star',
+        'img': '/images/shield.jpg',
     },
     {
-        name: 'iron-man',
-        img: "./images/reactor.jpg",
+        'name': 'bobomb',
+        'img': '/images/reactor.jpg',
     },
     {
-        name: 'black-widow',
-        img: './images/blackwidow.jpg',
+        'name': 'mario',
+        'img': '/images/hammer.jpg',
     },
     {
-        name: 'avengers',
-        img: './images/avengers.png',
+        'name': 'luigi',
+        'img': '/images/reactor.jpg',
     },
     {
-        name: 'hawkeye',
-        img: './images/hawkeye.jpg',
+        'name': 'peach',
+        'img': '/images/hawkeye.jpg',
     }
-]
-let delay = 1200
-let gameGrid = cardsArray.concat(cardsArray)
-gameGrid.sort(() => 0.5 - Math.random())
+];
+
+const gameGrid = cardsArray
+    .concat(cardsArray)
+    .sort(() => 0.5 - Math.random());
+
+let firstGuess = '';
+let secondGuess = '';
+let count = 0;
+let previousTarget = null;
+let delay = 1200;
+
 const game = document.getElementById('game');
 const grid = document.createElement('section');
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
 
 gameGrid.forEach(item => {
-    const card = document.createElement('div')
-    card.classList.add('card')
-    card.dataset.name = item.name
+    const { name, img } = item;
 
-    // Create front of card
-    const front = document.createElement('div')
-    front.classList.add('front')
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.name = name;
 
-    // Create back of card, which contains
-    const back = document.createElement('div')
-    back.classList.add('back')
-    back.style.backgroundImage = `url(${item.img})`
+    const front = document.createElement('div');
+    front.classList.add('front');
 
-    // Append card to grid, and front and back to each card
-    grid.appendChild(card)
-    card.appendChild(front)
-    card.appendChild(back)
-})
+    const back = document.createElement('div');
+    back.classList.add('back');
+    back.style.backgroundImage = `url(${img})`;
 
-grid.addEventListener('click', function(event) {
-    let clicked = event.target
-    if (clicked.nodeName === 'SECTION' || clicked === previousTarget) {
-        return
+    grid.appendChild(card);
+    card.appendChild(front);
+    card.appendChild(back);
+});
+
+const match = () => {
+    const selected = document.querySelectorAll('.selected');
+    selected.forEach(card => {
+        card.classList.add('match');
+    });
+};
+
+const resetGuesses = () => {
+    firstGuess = '';
+    secondGuess = '';
+    count = 0;
+    previousTarget = null;
+
+    var selected = document.querySelectorAll('.selected');
+    selected.forEach(card => {
+        card.classList.remove('selected');
+    });
+};
+
+grid.addEventListener('click', event => {
+
+    const clicked = event.target;
+
+    if (
+        clicked.nodeName === 'SECTION' ||
+        clicked === previousTarget ||
+        clicked.parentNode.classList.contains('selected') ||
+        clicked.parentNode.classList.contains('match')
+    ) {
+        return;
     }
+
     if (count < 2) {
-        count++
+        count++;
         if (count === 1) {
-            firstGuess = clicked.dataset.name
-            clicked.classList.add('selected')
+            firstGuess = clicked.parentNode.dataset.name;
+            console.log(firstGuess);
+            clicked.parentNode.classList.add('selected');
         } else {
-            secondGuess = clicked.dataset.name
-            clicked.classList.add('selected')
+            secondGuess = clicked.parentNode.dataset.name;
+            console.log(secondGuess);
+            clicked.parentNode.classList.add('selected');
         }
-        if (firstGuess !== '' && secondGuess !== '') {
+
+        if (firstGuess && secondGuess) {
             if (firstGuess === secondGuess) {
-                setTimeout(match, delay)
-                setTimeout(resetGuesses, delay)
-            } else {
-                setTimeout(resetGuesses, delay)
+                setTimeout(match, delay);
             }
+            setTimeout(resetGuesses, delay);
         }
         previousTarget = clicked;
     }
-})
-let previousTarget = null
-let firstGuess = ''
-let secondGuess = ''
-let count = 0;
 
-function match() {
-    var selected = document.querySelectorAll('.selected')
-    selected.forEach(card => {
-        card.classList.add('match')
-    })
-}
-
-function resetGuesses() {
-    firstGuess = ''
-    secondGuess = ''
-    count = 0
-
-    var selected = document.querySelectorAll('.selected')
-    selected.forEach(card => {
-        card.classList.remove('selected')
-    })
-}
+});
