@@ -1,26 +1,26 @@
 const cardsArray = [{
-        'name': 'shell',
-        'img': '/images/avengers.png',
+        'name': 'avengers',
+        'img': '/memory-game/images/avengers.png',
     },
     {
-        'name': 'star',
-        'img': '/images/shield.jpg',
+        'name': 'cap',
+        'img': '/memory-game/images/shield.jpg',
     },
     {
-        'name': 'bobomb',
-        'img': '/images/reactor.jpg',
+        'name': 'ironman',
+        'img': '/memory-game/images/reactor.jpg',
     },
     {
-        'name': 'mario',
-        'img': '/images/hammer.jpg',
+        'name': 'thor',
+        'img': '/memory-game/images/hammer.jpg',
     },
     {
-        'name': 'luigi',
-        'img': '/images/reactor.jpg',
+        'name': 'blackwidow',
+        'img': '/memory-game/images/blackwidow.jpg',
     },
     {
-        'name': 'peach',
-        'img': '/images/hawkeye.jpg',
+        'name': 'hawkeye',
+        'img': '/memory-game/images/hawkeye.jpg',
     }
 ];
 
