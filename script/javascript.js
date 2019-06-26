@@ -23,6 +23,7 @@ const cardsArray = [{
         img: './images/hawkeye.jpg',
     }
 ]
+let delay = 1200
 let gameGrid = cardsArray.concat(cardsArray)
 gameGrid.sort(() => 0.5 - Math.random())
 const game = document.getElementById('game');
@@ -34,8 +35,20 @@ gameGrid.forEach(item => {
     const card = document.createElement('div')
     card.classList.add('card')
     card.dataset.name = item.name
-    card.style.backgroundImage = `url(${item.img})`
+
+    // Create front of card
+    const front = document.createElement('div')
+    front.classList.add('front')
+
+    // Create back of card, which contains
+    const back = document.createElement('div')
+    back.classList.add('back')
+    back.style.backgroundImage = `url(${item.img})`
+
+    // Append card to grid, and front and back to each card
     grid.appendChild(card)
+    card.appendChild(front)
+    card.appendChild(back)
 })
 
 grid.addEventListener('click', function(event) {
@@ -54,10 +67,10 @@ grid.addEventListener('click', function(event) {
         }
         if (firstGuess !== '' && secondGuess !== '') {
             if (firstGuess === secondGuess) {
-                match();
-                resetGuesses();
+                setTimeout(match, delay)
+                setTimeout(resetGuesses, delay)
             } else {
-                resetGuesses();
+                setTimeout(resetGuesses, delay)
             }
         }
         previousTarget = clicked;
