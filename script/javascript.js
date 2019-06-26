@@ -40,16 +40,30 @@ gameGrid.forEach(item => {
 
 grid.addEventListener('click', function(event) {
     let clicked = event.target
-    if (clicked.nodeName === 'SECTION') {
+    if (clicked.nodeName === 'SECTION' || clicked === previousTarget) {
         return
     }
     if (count < 2) {
         count++
-        // Add selected class
-        clicked.classList.add('selected')
+        if (count === 1) {
+            firstGuess = clicked.dataset.name
+            clicked.classList.add('selected')
+        } else {
+            secondGuess = clicked.dataset.name
+            clicked.classList.add('selected')
+        }
+        if (firstGuess !== '' && secondGuess !== '') {
+            if (firstGuess === secondGuess) {
+                match();
+                resetGuesses();
+            } else {
+                resetGuesses();
+            }
+        }
+        previousTarget = clicked;
     }
 })
-
+let previousTarget = null
 let firstGuess = ''
 let secondGuess = ''
 let count = 0;
@@ -58,5 +72,16 @@ function match() {
     var selected = document.querySelectorAll('.selected')
     selected.forEach(card => {
         card.classList.add('match')
+    })
+}
+
+function resetGuesses() {
+    firstGuess = ''
+    secondGuess = ''
+    count = 0
+
+    var selected = document.querySelectorAll('.selected')
+    selected.forEach(card => {
+        card.classList.remove('selected')
     })
 }
