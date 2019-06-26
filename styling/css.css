@@ -39,7 +39,7 @@ body {
 
 .front {
     z-index: 2;
-    background: #FAB942 url('/images/logo.png') no-repeat center center / contain;
+    background: #FAB942 url('memory-game/images/logo.png') no-repeat center center / contain;
 }
 
 .back {
